@@ -3507,7 +3507,7 @@ int main(int argc, char *argv[])
   int quick = 0;
   char *justone = 0;
 
-  uint64 start = SYSTIME(0);
+  // uint64 start = SYSTIME(0);
 
   if (argc == 2 && strcmp(argv[1], "-q") == 0)
   {
@@ -3534,11 +3534,11 @@ int main(int argc, char *argv[])
   {
     exit(1);
   }
-  uint64 end = SYSTIME(0);
+  // uint64 end = SYSTIME(0);
 
   printf("ALL TESTS PASSED\n");
-  uint64 duration = end - start;
-  printf("Duration: %ld\n", duration);
+  // uint64 duration = end - start;
+  // printf("Duration: %ld\n", duration);
 
   exit(0);
 }
