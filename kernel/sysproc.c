@@ -92,7 +92,7 @@ sys_uptime(void)
 }
 
 uint64
-sys_SYSTIME(void)
+sys_systime(void)
 {
   return SYSTIME(0);
 }
