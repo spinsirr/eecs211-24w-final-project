@@ -94,7 +94,7 @@ sys_uptime(void)
 uint64
 sys_systime(void)
 {
-  return SYSTIME(0);
+  return *(uint64*)CLINT_MTIME;
 }
 
 uint64
