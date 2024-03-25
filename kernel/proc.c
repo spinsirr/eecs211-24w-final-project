@@ -7,7 +7,7 @@
 #include "defs.h"
 #include "timer.h"
 #define SHORT_TICK_INTERVAL 500000
-#define LONG_TICK_INTERVAL 5000000
+#define LONG_TICK_INTERVAL 2000000
 
 struct cpu cpus[NCPU];
 

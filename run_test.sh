@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Program name to test
-PROGRAM_NAME="ls"
+PROGRAM_NAME="usertests"
 
 # Check if expect is installed
 if ! command -v expect &> /dev/null; then
