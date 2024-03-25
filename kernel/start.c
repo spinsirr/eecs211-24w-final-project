@@ -3,6 +3,8 @@
 #include "memlayout.h"
 #include "riscv.h"
 #include "defs.h"
+#include "timer.h"
+#include "spinlock.h"
 
 void main();
 void timerinit();
@@ -11,7 +13,8 @@ void timerinit();
 __attribute__ ((aligned (16))) char stack0[4096 * NCPU];
 
 // a scratch area per CPU for machine-mode timer interrupts.
-uint64 timer_scratch[NCPU][5];
+uint64 timer_scratch[NCPU][7] = {0};
+struct spinlock tscratch_lock = {0};
 
 // assembly code in kernelvec.S for machine-mode timer interrupt.
 extern void timervec();
@@ -76,6 +79,7 @@ timerinit()
   uint64 *scratch = &timer_scratch[id][0];
   scratch[3] = CLINT_MTIMECMP(id);
   scratch[4] = interval;
+  scratch[5] = CLINT_MTIME;
   w_mscratch((uint64)scratch);
 
   // set the machine-mode trap handler.
@@ -86,4 +90,6 @@ timerinit()
 
   // enable machine-mode timer interrupts.
   w_mie(r_mie() | MIE_MTIE);
+
+  initlock(&tscratch_lock, "tscratch");
 }
